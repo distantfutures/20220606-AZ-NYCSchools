@@ -8,9 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.distantfutures.a20220606_az_nycschools.data.School
 import com.distantfutures.a20220606_az_nycschools.databinding.SchoolItemBinding
 
-class SchoolsRecyclerViewAdapter : ListAdapter<School, SchoolsRecyclerViewAdapter.SchoolViewHolder>(
-    DiffCallback
-) {
+class SchoolsRecyclerViewAdapter(
+    private val onSchoolClicked: (School) -> Unit
+) : ListAdapter<School, SchoolsRecyclerViewAdapter.SchoolViewHolder>(DiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SchoolViewHolder {
         return SchoolViewHolder(SchoolItemBinding.inflate(LayoutInflater.from(parent.context)))
@@ -18,6 +18,9 @@ class SchoolsRecyclerViewAdapter : ListAdapter<School, SchoolsRecyclerViewAdapte
 
     override fun onBindViewHolder(holder: SchoolViewHolder, position: Int) {
         val item = getItem(position)
+        holder.itemView.setOnClickListener {
+            onSchoolClicked(item)
+        }
         holder.bind(item)
     }
 
@@ -36,5 +39,4 @@ class SchoolsRecyclerViewAdapter : ListAdapter<School, SchoolsRecyclerViewAdapte
             binding.executePendingBindings()
         }
     }
-
 }
