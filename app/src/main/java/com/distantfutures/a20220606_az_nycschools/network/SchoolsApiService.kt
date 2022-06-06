@@ -16,8 +16,8 @@ private val retrofit = Retrofit.Builder()
 
 interface SchoolsApiService {
     @GET("resource/s3k6-pzi2.json")
-    suspend fun getSchoolsList(@Path("name") name: String):
-            Response<School>
+    suspend fun getSchoolsList():
+            Response<List<School>>
 }
 
 object SchoolsApi {

@@ -33,6 +33,7 @@ class SchoolsRecyclerViewAdapter : ListAdapter<School, SchoolsRecyclerViewAdapte
     class SchoolViewHolder(private var binding: SchoolItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: School) {
             binding.data = item
+            binding.executePendingBindings()
         }
     }
 

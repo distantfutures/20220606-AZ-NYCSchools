@@ -24,6 +24,7 @@ class SchoolsListFragment : Fragment() {
     ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_schools_list, container, false)
 
+        binding.lifecycleOwner = this
         binding.viewModel = schoolsListVM
         binding.schoolsList.adapter = SchoolsRecyclerViewAdapter()
 
