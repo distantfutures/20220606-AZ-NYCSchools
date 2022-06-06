@@ -30,33 +30,38 @@ class SchoolsListFragment : Fragment() {
 
         binding.lifecycleOwner = this
         binding.viewModel = schoolsListVM
-        binding.schoolsList.adapter = SchoolsRecyclerViewAdapter(){
-            // Add code to open dialog box to show details
+        // binds data to rv adapter(which has a clicklistener)
+        binding.schoolsList.adapter = SchoolsRecyclerViewAdapter{
+            // shows dialog box when school is clicked
             showDialog(it)
         }
         return binding.root
     }
 
-    fun showDialog(school: School) {
+    private fun showDialog(school: School) {
         val schoolName = school.school_name
-//        val scores = schoolsListVM.scores.value?.dbn
         schoolsListVM.scoreOfSchool(school.dbn)
+        Log.i(TAG, "School Name: $schoolName")
+
         if (schoolsListVM.scores.value == null) {
-            val dialog = AlertDialog(schoolName, "NO SAT SCORES")
+            val dialog = AlertDialog("NO SAT SCORES")
             dialog.show(parentFragmentManager, "School Info Dialog")
         } else {
+            // initialize variables from scores in viewmodel
             val math = schoolsListVM.scores.value?.sat_math_avg_score
             val writing = schoolsListVM.scores.value?.sat_writing_avg_score
             val reading = schoolsListVM.scores.value?.sat_critical_reading_avg_score
+            val satTakers = schoolsListVM.scores.value?.num_of_sat_test_takers
 
-            val dialog = schoolName.let {
-                AlertDialog(it,
-                    "Math Score: $math \n" +
-                            "Writing Score: $writing \n" +
-                            "Reading Score: $reading")
-            }
+            // instantiates, sets & shows dialog of School's SAT scores
+            val dialog = AlertDialog(
+                "School: $schoolName \n\n" +
+                "Math Score: $math \n" +
+                "Writing Score: $writing \n" +
+                "Reading Score: $reading \n" +
+                "No. of SAT Tests Taken: $satTakers"
+            )
             dialog.show(parentFragmentManager, "School Info Dialog")
         }
-
     }
 }

@@ -5,15 +5,13 @@ import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
 
-class AlertDialog(title: String, message: String): DialogFragment() {
-    var titleText = title
-    var messageText = message
+class AlertDialog(private val message: String): DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return activity?.let {
             val builder = AlertDialog.Builder(it)
             builder
-                .setTitle(titleText)
-                .setMessage(messageText)
+                .setTitle("School's Average SAT Scores")
+                .setMessage(message)
                 .setNegativeButton("Close") { _, _ ->
                 }
             builder.create()

@@ -19,6 +19,7 @@ class SchoolsRecyclerViewAdapter(
     override fun onBindViewHolder(holder: SchoolViewHolder, position: Int) {
         val item = getItem(position)
         holder.itemView.setOnClickListener {
+            // function type - passes in school/item clicked
             onSchoolClicked(item)
         }
         holder.bind(item)

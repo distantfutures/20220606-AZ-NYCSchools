@@ -1,6 +1,8 @@
 package com.distantfutures.a20220606_az_nycschools.data
 
 data class School(
+    val dbn: String,
+    val school_name: String,
 //    val academicopportunities1: String,
 //    val academicopportunities2: String,
 //    val admissionspriority11: String,
@@ -18,7 +20,6 @@ data class School(
 //    val code1: String,
 //    val community_board: String,
 //    val council_district: String,
-    val dbn: String,
 //    val directions1: String,
 //    val ell_programs: String,
 //    val extracurricular_activities: String,
@@ -53,7 +54,6 @@ data class School(
 //    val school_10th_seats: String,
 //    val school_accessibility_description: String,
 //    val school_email: String,
-    val school_name: String,
 //    val school_sports: String,
 //    val seats101: String,
 //    val seats9ge1: String,
