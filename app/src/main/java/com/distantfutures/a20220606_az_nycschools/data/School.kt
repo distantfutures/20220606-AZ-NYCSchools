@@ -18,7 +18,7 @@ data class School(
 //    val code1: String,
 //    val community_board: String,
 //    val council_district: String,
-//    val dbn: String,
+    val dbn: String,
 //    val directions1: String,
 //    val ell_programs: String,
 //    val extracurricular_activities: String,

@@ -30,18 +30,33 @@ class SchoolsListFragment : Fragment() {
 
         binding.lifecycleOwner = this
         binding.viewModel = schoolsListVM
-        binding.schoolsList.adapter = SchoolsRecyclerViewAdapter()
-
+        binding.schoolsList.adapter = SchoolsRecyclerViewAdapter(){
+            // Add code to open dialog box to show details
+            showDialog(it)
+        }
         return binding.root
     }
 
-    fun showDialog(school: School?) {
-        val schoolName = school?.school_name
-        val dialog = schoolName?.let { AlertDialog(it, "displayschool info") }
-        if (dialog != null) {
+    fun showDialog(school: School) {
+        val schoolName = school.school_name
+//        val scores = schoolsListVM.scores.value?.dbn
+        schoolsListVM.scoreOfSchool(school.dbn)
+        if (schoolsListVM.scores.value == null) {
+            val dialog = AlertDialog(schoolName, "NO SAT SCORES")
             dialog.show(parentFragmentManager, "School Info Dialog")
         } else {
-            Log.e(TAG, "DIALOG NULL")
+            val math = schoolsListVM.scores.value?.sat_math_avg_score
+            val writing = schoolsListVM.scores.value?.sat_writing_avg_score
+            val reading = schoolsListVM.scores.value?.sat_critical_reading_avg_score
+
+            val dialog = schoolName.let {
+                AlertDialog(it,
+                    "Math Score: $math \n" +
+                            "Writing Score: $writing \n" +
+                            "Reading Score: $reading")
+            }
+            dialog.show(parentFragmentManager, "School Info Dialog")
         }
+
     }
 }
