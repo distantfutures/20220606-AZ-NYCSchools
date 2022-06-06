@@ -39,28 +39,30 @@ class SchoolsListFragment : Fragment() {
     }
 
     private fun showDialog(school: School) {
-        val schoolName = school.school_name
+        val schoolName = school.school_name!!
         schoolsListVM.scoreOfSchool(school.dbn)
         Log.i(TAG, "School Name: $schoolName")
 
         if (schoolsListVM.scores.value == null) {
-            val dialog = AlertDialog("NO SAT SCORES")
+            val dialog = AlertDialog(getString(R.string.no_scores_text))
             dialog.show(parentFragmentManager, "School Info Dialog")
         } else {
             // initialize variables from scores in viewmodel
-            val math = schoolsListVM.scores.value?.sat_math_avg_score
-            val writing = schoolsListVM.scores.value?.sat_writing_avg_score
-            val reading = schoolsListVM.scores.value?.sat_critical_reading_avg_score
-            val satTakers = schoolsListVM.scores.value?.num_of_sat_test_takers
+            val math = schoolsListVM.scores.value?.sat_math_avg_score!!
+            val writing = schoolsListVM.scores.value?.sat_writing_avg_score!!
+            val reading = schoolsListVM.scores.value?.sat_critical_reading_avg_score!!
+            val satTakers = schoolsListVM.scores.value?.num_of_sat_test_takers!!
+
+            // builds sets variables to string resource
+            val dialogText = resources.getString(
+                R.string.dialog_box_text,
+                schoolName,
+                math, writing,
+                reading,
+                satTakers)
 
             // instantiates, sets & shows dialog of School's SAT scores
-            val dialog = AlertDialog(
-                "School: $schoolName \n\n" +
-                "Math Score: $math \n" +
-                "Writing Score: $writing \n" +
-                "Reading Score: $reading \n" +
-                "No. of SAT Tests Taken: $satTakers"
-            )
+            val dialog = AlertDialog(dialogText)
             dialog.show(parentFragmentManager, "School Info Dialog")
         }
     }
