@@ -3,6 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="viewModel"
+            type="com.distantfutures.a20220606_az_nycschools.viewmodel.SchoolsListViewModel" />
+    </data>
+
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -14,8 +20,9 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
+            app:listData="@{viewModel.schoolList}"
             app:layoutManager="LinearLayoutManager"
-            tools:context=".SchoolsListFragment"
+            tools:context=".ui.SchoolsListFragment"
             tools:listitem="@layout/school_item" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>

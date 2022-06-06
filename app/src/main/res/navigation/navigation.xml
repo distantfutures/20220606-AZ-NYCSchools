@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/schoolsListFragment"
-        android:name="com.distantfutures.a20220606_az_nycschools.SchoolsListFragment"
+        android:name="com.distantfutures.a20220606_az_nycschools.ui.SchoolsListFragment"
         android:label="SchoolsListFragment"
         tools:layout="@layout/fragment_schools_list"/>
 </navigation>

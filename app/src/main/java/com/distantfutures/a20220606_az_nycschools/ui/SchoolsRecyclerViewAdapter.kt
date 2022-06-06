@@ -1,4 +1,4 @@
-package com.distantfutures.a20220606_az_nycschools
+package com.distantfutures.a20220606_az_nycschools.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,7 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.distantfutures.a20220606_az_nycschools.data.School
 import com.distantfutures.a20220606_az_nycschools.databinding.SchoolItemBinding
 
-class MySchoolsRecyclerViewAdapter : ListAdapter<School, MySchoolsRecyclerViewAdapter.SchoolViewHolder>(DiffCallback) {
+class SchoolsRecyclerViewAdapter : ListAdapter<School, SchoolsRecyclerViewAdapter.SchoolViewHolder>(
+    DiffCallback
+) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SchoolViewHolder {
         return SchoolViewHolder(SchoolItemBinding.inflate(LayoutInflater.from(parent.context)))
@@ -21,7 +23,7 @@ class MySchoolsRecyclerViewAdapter : ListAdapter<School, MySchoolsRecyclerViewAd
 
     companion object DiffCallback : DiffUtil.ItemCallback<School>() {
         override fun areItemsTheSame(oldItem: School, newItem: School): Boolean {
-            return oldItem.schoolName == newItem.schoolName
+            return oldItem.school_name == newItem.school_name
         }
 
         override fun areContentsTheSame(oldItem: School, newItem: School): Boolean {
