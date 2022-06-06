@@ -13,7 +13,7 @@ class SchoolsRecyclerViewAdapter(
 ) : ListAdapter<School, SchoolsRecyclerViewAdapter.SchoolViewHolder>(DiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SchoolViewHolder {
-        return SchoolViewHolder(SchoolItemBinding.inflate(LayoutInflater.from(parent.context)))
+        return SchoolViewHolder(SchoolItemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun onBindViewHolder(holder: SchoolViewHolder, position: Int) {

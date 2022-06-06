@@ -14,9 +14,11 @@
 
         <TextView
             android:id="@+id/school_name"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="@dimen/list_item_padding"
             android:layout_margin="@dimen/text_margin"
+            android:background="@drawable/outlined_box"
             android:text="@{data.school_name}"
             android:textSize="@dimen/school_text_size"/>
 
